@@ -10,7 +10,6 @@ let catalogo = document.getElementById("catal");
 // pesquisa
 document.querySelector(".inp").addEventListener('input', function (e) {
     valorInp = e.target.value; // pode ser querySelector aq
-    console.log(valorInp);
 
     desaparecer();
 
@@ -46,3 +45,48 @@ function retornar(){
     window.scrollTo(0, 0);
 }
 
+// ======================================================
+
+//ativado quando apertar "enter"
+inp.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if(inp.value.length > 0){
+        let filmes = new Array();
+        fetch("http://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&s="+inp.value, {mode:"cors"})
+        .then((resp)=> resp.json())
+        .then((resp)=>{
+            resp.Search.forEach((item)=>{
+                console.log(item);
+                let filme = new Filme(
+                    item.imdbID,
+                    item.Title,
+                    item.Year,
+                    null,
+                    null,
+                    null,
+                    item.Poster,
+                    null,
+                    null,
+                    null,
+                    null
+                );
+                filmes.push(filme);
+            });
+            listarFilmes(filmes);
+        })
+      }
+      return false;
+    }
+});
+
+let listarFilmes = async (filmes) => {
+    let listaFilmes = await document.querySelector("#catal")
+    listaFilmes.innerHTML = "";
+    console.log(listaFilmes);
+    if(filmes.length > 0){
+        filmes.forEach(async(filme)=>{
+            listaFilmes.appendChild(await filme.getCard());
+        });
+    }
+}
