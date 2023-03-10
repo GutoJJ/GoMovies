@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Augusto Jung">
+    <meta name="description" content="Catalogo de filmes">
+    <title>GoMovies</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="icon" href="./images/G.svg">
+    <script src="classes.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <label for="" class="nome"><span id="gom">Go</span>Movies</label>
+            <ul>
+                <li><a href="#index.html" class="home" onclick="retornar()">Início</a></li>
+                <li><a id="catalogo" onclick="desaparecer()">Catálogo</a></li>
+            </ul>
+        </nav>
+
+        <header>
+            <div id="desaparecer">
+                <img id="vamos" src="./images/Vamos comecar_.svg" alt="">
+                <h1 id="fraseBonita">Descubra filmes com apenas uma simples busca!</h1>
+            </div>
+            <input type="text" class="inp" placeholder="Descobrir filmes:">
+        </header>
+        <section id="catal">
+
+            <div class="filme">
+                <img src="./images/Rectangle 16.svg" alt="">
+                <div class="textFilmes">
+                    <div class="tituloFilme">
+                        <h1 class="card-Titulo">Titulo</h1>
+                    </div>
+                    <div class="info">
+                        <p class="card-Ano">Lançamento</p>
+                    </div>
+                </div>
+                <div id="favoritar">
+
+                </div>
+            </div>
+            
+
+        </section>
+    </div>
+
+    
+
+    
+    <section id="favoritos">
+
+        <h1>Favoritos</h1>
+
+    </section>
+
+    <footer>
+        <h1>
+            Jung - 2023
+        </h1>
+    </footer>
+
+</body>
+<script src="./script/script.js"></script>
+</html>
