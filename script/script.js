@@ -53,7 +53,7 @@ inp.addEventListener("keypress", function(event) {
       event.preventDefault();
       if(inp.value.length > 0){
         let filmes = new Array();
-        fetch("http://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&s="+inp.value, {mode:"cors"})
+        fetch("https://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&s="+inp.value, {mode:"cors"})
         .then((resp)=> resp.json())
         .then((resp)=>{
             resp.Search.forEach((item)=>{

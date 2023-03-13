@@ -163,6 +163,7 @@ p{
 
 .filme{
     margin-bottom: 3vh;
+    max-width: 300px;
 }
 
 .filme-img{
@@ -172,7 +173,7 @@ p{
 .tituloFilme h1{
     background-color: #9a333d;
     margin-top: -5px;
-    font-size: 35px;
+    font-size: 25px;
     padding-left: 15px;
 }
 
