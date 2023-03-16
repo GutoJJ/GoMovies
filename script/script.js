@@ -57,7 +57,7 @@ inp.addEventListener("keypress", function(event) {
         .then((resp)=> resp.json())
         .then((resp)=>{
             resp.Search.forEach((item)=>{
-                console.log(item);
+                //console.log(item);
                 let filme = new Filme(
                     item.imdbID,
                     item.Title,
@@ -81,12 +81,23 @@ inp.addEventListener("keypress", function(event) {
 });
 
 let listarFilmes = async (filmes) => {
-    let listaFilmes = await document.querySelector("#catal")
+    let listaFilmes = await document.querySelector("#catal");
     listaFilmes.innerHTML = "";
     console.log(listaFilmes);
     if(filmes.length > 0){
         filmes.forEach(async(filme)=>{
             listaFilmes.appendChild(await filme.getCard());
+            filme.btnDetalhes.onclick = function () {
+                detalhesFilme(filme.id);
+            }
         });
     }
+}
+
+let detalhesFilme = async (id) => {
+    fetch("https://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&i=")
+    .then((resp) => resp.json())
+    .then((resp) => {
+        console.log(resp.Title)
+    });
 }

@@ -184,6 +184,24 @@ p{
     padding-bottom: 5px;
 }
 
+.btnDetalhes{
+    width: 100%;
+    height: 40px;
+    background-color:#9a333d89 ;
+    color: #fff;
+    font-size: 25px;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.btnDetalhes:hover{
+    background-color: #9a333d;
+    box-shadow: 3px 4px 70px rgba(154, 51, 61, 0.56);
+    transition: ease-in-out 0.5s;
+}
+
 footer{
     width: 100%;
     height: 100px;
