@@ -79,11 +79,10 @@ inp.addEventListener("keypress", function(event) {
       return false;
     }
 });
-
+let listaFilmes = document.querySelector("#catal");
 let listarFilmes = async (filmes) => {
-    let listaFilmes = await document.querySelector("#catal");
+    
     listaFilmes.innerHTML = "";
-    console.log(listaFilmes);
     if(filmes.length > 0){
         filmes.forEach(async(filme)=>{
             listaFilmes.appendChild(await filme.getCard());
@@ -95,9 +94,36 @@ let listarFilmes = async (filmes) => {
 }
 
 let detalhesFilme = async (id) => {
+    listaFilmes.innerHTML= "";
     fetch("https://www.omdbapi.com/?apikey=5861bcaf&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
-        console.log(resp.Title);
+        console.log(resp);
+        
+        // instanciar objeto da classe filme
+        let filme = new Filme (
+            resp.imdbID,
+            resp.Title,
+            resp.Year,
+            resp.Genre.split(","),
+            resp.Runtime,
+            resp.Poster,
+            resp.Plot,
+            resp.Director,
+            resp.Actors.split(","),
+            resp.Awards,
+            resp.imdbRating
+        )
+
+        console.log(filme);
+
     });
+    detalharFilme();
+}
+
+let detalharFilme = async () => {
+    
+    let detailFilmes = document.querySelector("detailsFilme");
+    detailFilmes.appendChild(await getDetalhesCard());
+
 }

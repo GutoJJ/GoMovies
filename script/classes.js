@@ -63,13 +63,24 @@ class Filme{
 
         textFilmes.appendChild(tituloFilme);
         textFilmes.appendChild(Info);
-        
+
         this.setBtnDetalhes();
         textFilmes.appendChild(this.getBtnDetalhes());
 
         tituloFilme.appendChild(cardTitulo);
         Info.appendChild(cardAno);
         return card;
+    }
+
+    getDetalhesCard = async () => {
+        let detalheCard = document.createElement("div");
+        detalheCard.setAttribute("class","detalheCard");
+
+        let TituloDetalhe = document.createElement("h1");
+        TituloDetalhe.setAttribute("class","TituloDetalhe");
+        TituloDetalhe.appendChild(document.createTextNode(this.titulo));
+        detalheCard.appendChild(TituloDetalhe);
+
     }
 
     setBtnDetalhes = () =>{
