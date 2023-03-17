@@ -52,24 +52,32 @@ class Filme{
         let cardAno = document.createElement("p");
         cardAno.setAttribute("class","card-ano");
 
-        let btnDetalhes = document.createElement("button");
-        btnDetalhes.setAttribute("class","btnDetalhes");
-        btnDetalhes.setAttribute("id", this.id);
-        btnDetalhes.appendChild(document.createTextNode("Detalhes"));
-
+        
         cardAno.appendChild(document.createTextNode(this.ano));
         cardTitulo.appendChild(document.createTextNode(this.titulo));
+
+
 
         card.appendChild(imgCartaz);
         card.appendChild(textFilmes);
 
         textFilmes.appendChild(tituloFilme);
         textFilmes.appendChild(Info);
-        textFilmes.appendChild(btnDetalhes);
+        
+        this.setBtnDetalhes();
+        textFilmes.appendChild(this.getBtnDetalhes());
 
         tituloFilme.appendChild(cardTitulo);
         Info.appendChild(cardAno);
         return card;
+    }
+
+    setBtnDetalhes = () =>{
+        this.btnDetalhes = document.createElement("button");
+        this.btnDetalhes.setAttribute("class","btnDetalhes");
+        this.btnDetalhes.setAttribute("id", this.id);
+        this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+
     }
 
     getBtnDetalhes = () => {

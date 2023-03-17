@@ -87,7 +87,7 @@ let listarFilmes = async (filmes) => {
     if(filmes.length > 0){
         filmes.forEach(async(filme)=>{
             listaFilmes.appendChild(await filme.getCard());
-            filme.btnDetalhes.onclick = function () {
+            filme.getBtnDetalhes().onclick = () => {
                 detalhesFilme(filme.id);
             }
         });
@@ -95,9 +95,9 @@ let listarFilmes = async (filmes) => {
 }
 
 let detalhesFilme = async (id) => {
-    fetch("https://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&i=")
+    fetch("https://www.omdbapi.com/?apikey=5861bcaf&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
-        console.log(resp.Title)
+        console.log(resp.Title);
     });
 }
