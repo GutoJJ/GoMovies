@@ -13,9 +13,7 @@ document.querySelector(".inp").addEventListener('input', function (e) {
 
     desaparecer();
 
-    if(e.target.value==""){ // checar se tem caracteres no input
-        retornar(); // puxa função para aparecer
-    }
+
 });
 
  // esconder
@@ -46,13 +44,13 @@ function retornar(){
 }
 
 // ======================================================
-
+let filmes;
 //ativado quando apertar "enter"
 inp.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
       if(inp.value.length > 0){
-        let filmes = new Array();
+        filmes = new Array();
         fetch("https://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&s="+inp.value, {mode:"cors"})
         .then((resp)=> resp.json())
         .then((resp)=>{
@@ -66,6 +64,7 @@ inp.addEventListener("keypress", function(event) {
                     null,
                     null,
                     item.Poster,
+                    null,
                     null,
                     null,
                     null,
@@ -107,23 +106,19 @@ let detalhesFilme = async (id) => {
             resp.Year,
             resp.Genre.split(","),
             resp.Runtime,
-            resp.Poster,
             resp.Plot,
+            resp.Poster,
             resp.Director,
             resp.Actors.split(","),
             resp.Awards,
-            resp.imdbRating
-        )
-
+            resp.imdbRating,
+            resp.Awards,
+            null
+        );
         console.log(filme);
-
+        
+        filme.GetCardDetalhes();
     });
-    detalharFilme();
-}
-
-let detalharFilme = async () => {
     
-    let detailFilmes = document.querySelector("detailsFilme");
-    detailFilmes.appendChild(await getDetalhesCard());
-
 }
+

@@ -202,6 +202,52 @@ p{
     transition: ease-in-out 0.5s;
 }
 
+.detalheCard{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    display: flex;
+}
+
+.detalheImg{
+    width: 300px;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 3px 4px 70px rgba(154, 51, 61, 0.56);
+    border: 5px solid #9a333d;
+}
+
+.bottomRet{
+    width: 300px;
+    height: 50px;
+    background-color: #9A333D;
+    margin-top: -7px;
+}
+
+.detalheText{
+    margin-top: 25px;
+    flex: 1;
+    margin-left: 25px;
+    column-gap: 0;    
+    background-color:#9a333d89 ;
+    height: fit-content;
+}
+
+.detalheText p,h1{
+   padding: 5px;
+}
+
+.TituloDetalhe{
+    background-color: #9A333D;
+    height: fit-content;
+    margin-top: 0;
+    font-size: 45px;
+}
+
+.plotDetalhe{
+    background-color:#9a333d60 ;
+}
+
+
+
 footer{
     width: 100%;
     height: 100px;
@@ -265,6 +311,17 @@ footer h1{
     }
     #fraseBonita{
         font-size: 3vw;
+    }
+    .detalheCard{
+        flex-direction: column;
+    }
+    .TituloDetalhe{
+        font-size: 20px;
+    }
+    .detalheText{
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
     }
 }
 
