@@ -1,36 +1,20 @@
 
 // variáveis
 let valorInp; // valor do input armazenado em uma variável
-let Dep = document.getElementById("desaparecer"); // parte do site para desaparecer
+let Dep = document.querySelector("#desaparecer"); // parte do site para desaparecer
 let inp = document.querySelector(".inp");
-let fav = document.getElementById("favoritos");
+let fav = document.querySelector("#favoritos");
 let wrapper = document.querySelector(".wrapper");
-let catalogo = document.getElementById("catal");
+let catalogo = document.querySelector("#catal");
 
 // pesquisa
 document.querySelector(".inp").addEventListener('input', function (e) {
     valorInp = e.target.value; // pode ser querySelector aq
-
     desaparecer();
-
-
 });
 
- // esconder
- function desaparecer(){
-    Dep.style.visibility = "hidden"; 
-    Dep.style.display = "none";
-    fav.style.visibility = "hidden";
-    fav.style.display = "none";
-    inp.style.marginTop = "95px";
-    wrapper.style.background = "#151515";
-    catalogo.style.display = "grid";
-    catalogo.style.visibility = "visible";
-    window.scrollTo(0, 0);
- }
-
 // fazer aparecer
-function retornar(){
+let inicioBtn = document.querySelector("#inicio").onclick = () => {
     document.querySelector(".inp").value = "";
     Dep.style.visibility = ""; // aparecer
     Dep.style.display = "";
@@ -40,6 +24,19 @@ function retornar(){
     wrapper.style.background = "";
     catalogo.style.display = "";
     catalogo.style.visibility = "";
+    window.scrollTo(0, 0);
+}
+
+// esconder
+let catalogoBtn = document.querySelector("#catalogo").onclick = () => {
+    Dep.style.visibility = "hidden"; 
+    Dep.style.display = "none";
+    fav.style.visibility = "hidden";
+    fav.style.display = "none";
+    inp.style.marginTop = "95px";
+    wrapper.style.background = "#151515";
+    catalogo.style.display = "grid";
+    catalogo.style.visibility = "visible";
     window.scrollTo(0, 0);
 }
 
