@@ -7,11 +7,7 @@ let fav = document.querySelector("#favoritos");
 let wrapper = document.querySelector(".wrapper");
 let catalogo = document.querySelector("#catal");
 
-// pesquisa
-document.querySelector(".inp").addEventListener('input', function (e) {
-    valorInp = e.target.value; // pode ser querySelector aq
-    desaparecer();
-});
+
 
 // fazer aparecer
 let inicioBtn = document.querySelector("#inicio").onclick = () => {
@@ -27,8 +23,7 @@ let inicioBtn = document.querySelector("#inicio").onclick = () => {
     window.scrollTo(0, 0);
 }
 
-// esconder
-let catalogoBtn = document.querySelector("#catalogo").onclick = () => {
+function desaparecer(){
     Dep.style.visibility = "hidden"; 
     Dep.style.display = "none";
     fav.style.visibility = "hidden";
@@ -40,12 +35,24 @@ let catalogoBtn = document.querySelector("#catalogo").onclick = () => {
     window.scrollTo(0, 0);
 }
 
+// esconder
+let catalogoBtn = document.querySelector("#catalogo").onclick = () => {
+    desaparecer();
+}
+
+// pesquisa
+document.querySelector(".inp").addEventListener('input', function (e) {
+    valorInp = e.target.value; // pode ser querySelector aq
+    desaparecer();
+});
+
 // ======================================================
 let filmes;
 //ativado quando apertar "enter"
 inp.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
+      desaparecer();
       if(inp.value.length > 0){
         filmes = new Array();
         fetch("https://www.omdbapi.com/?i=tt3896198&apikey=5861bcaf&s="+inp.value, {mode:"cors"})
