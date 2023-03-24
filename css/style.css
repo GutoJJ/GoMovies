@@ -195,12 +195,30 @@ p{
     border: 0;
     cursor: pointer;
     margin-top: 5px;
+    transition:  0.3s ease-in-out;
 }
 
 .btnDetalhes:hover{
     background-color: #9a333d;
     box-shadow: 3px 4px 70px rgba(154, 51, 61, 0.56);
-    transition: ease-in-out 0.5s;
+    
+}
+
+.btnFavoritos{
+    width: 100%;
+    background-color: rgba(220, 220, 220, 0.8);
+    border: none;
+    color: #1f1f1f;
+    font-size: 25px;
+    padding: 10px 20px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    border: 5px solid #9A333D;
+}
+
+.btnFavoritos:hover{
+    background-color: rgba(220, 220, 220, 1);
+    box-shadow: 3px 4px 70px rgba(154, 51, 61, 0.56);
 }
 
 .detalheCard{
@@ -210,7 +228,7 @@ p{
 }
 
 .detalheImg{
-    width: 300px;
+    width: 350px;
     border-radius: 30px 30px 0 0;
     box-shadow: 3px 4px 70px rgba(154, 51, 61, 0.56);
     border: 5px solid #9a333d;
@@ -251,7 +269,7 @@ p{
 
 footer{
     width: 100%;
-    height: 100px;
+    height: 110px;
     background: #9a333d;
 
 }

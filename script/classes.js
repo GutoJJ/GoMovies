@@ -14,7 +14,7 @@ class Diretor{
 
 class Filme{
 
-    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao, awards, btnDetalhes){
+    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao, awards, btnDetalhes, btnFavoritos){
         this.id=id;
         this.titulo=titulo;
         this.ano=ano;
@@ -28,6 +28,7 @@ class Filme{
         this.avaliacao=avaliacao;
         this.awards=awards;
         this.btnDetalhes=null;
+        this.btnFavoritos=null;
     }
 
     getCard = async () => {
@@ -53,11 +54,8 @@ class Filme{
         let cardAno = document.createElement("p");
         cardAno.setAttribute("class","card-ano");
 
-        
         cardAno.appendChild(document.createTextNode(this.ano));
         cardTitulo.appendChild(document.createTextNode(this.titulo));
-
-
 
         card.appendChild(imgCartaz);
         card.appendChild(textFilmes);
@@ -137,6 +135,9 @@ class Filme{
         plotDetalhe.setAttribute("class","plotDetalhe");
         plotDetalhe.appendChild(document.createTextNode("Sinopse: "+this.sinopse));
 
+        this.setBtnFavoritos();
+        
+
         listaFilmes.appendChild(detalheCard);
 
         imgDetalheDiv.appendChild(detalheImg);
@@ -153,6 +154,20 @@ class Filme{
         detalheText.appendChild(awardsDetalhe);
         detalheText.appendChild(avaliacaoDetalhe);
         detalheText.appendChild(plotDetalhe);
+        detalheText.appendChild(this.getBtnFavoritos());
+    }
+
+    setBtnFavoritos = () => {
+        console.log("Cara, eu não sei agir sobre pressão :(");
+
+        this.btnFavoritos = document.createElement("button");
+        this.btnFavoritos.setAttribute("class","btnFavoritos");
+        this.btnFavoritos.setAttribute("id", this.id);
+        this.btnFavoritos.appendChild(document.createTextNode("--- Favoritar ---"));
+    }
+
+    getBtnFavoritos = () => {
+        return this.btnFavoritos
     }
     
 }

@@ -6,22 +6,8 @@ let inp = document.querySelector(".inp");
 let fav = document.querySelector("#favoritos");
 let wrapper = document.querySelector(".wrapper");
 let catalogo = document.querySelector("#catal");
+let filmesSave = [];
 
-
-
-// fazer aparecer
-let inicioBtn = document.querySelector("#inicio").onclick = () => {
-    document.querySelector(".inp").value = "";
-    Dep.style.visibility = ""; // aparecer
-    Dep.style.display = "";
-    fav.style.visibility = "";
-    fav.style.display = "";
-    inp.style.marginTop = "";
-    wrapper.style.background = "";
-    catalogo.style.display = "";
-    catalogo.style.visibility = "";
-    window.scrollTo(0, 0);
-}
 
 function desaparecer(){
     Dep.style.visibility = "hidden"; 
@@ -75,6 +61,7 @@ inp.addEventListener("keypress", function(event) {
                     null
                 );
                 filmes.push(filme);
+                
             });
             listarFilmes(filmes);
         })
@@ -96,12 +83,13 @@ let listarFilmes = async (filmes) => {
     }
 }
 
+
 let detalhesFilme = async (id) => {
     listaFilmes.innerHTML= "";
     fetch("https://www.omdbapi.com/?apikey=5861bcaf&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
-        console.log(resp);
+        //console.log(resp);
         
         // instanciar objeto da classe filme
         let filme = new Filme (
@@ -118,11 +106,35 @@ let detalhesFilme = async (id) => {
             resp.imdbRating,
             resp.Awards,
             null
-        );
-        console.log(filme);
+        )
+        //console.log(filme);
         
         filme.GetCardDetalhes();
+        filme.getBtnFavoritos().onclick = () => {
+            salvarFilme(filme);
+        }
     });
     
+}
+
+
+let salvarFilme = (filme) => {
+    
+    let filmesString = localStorage.getItem('filmesFavoritos');
+    
+    try {
+        filmesSave = JSON.parse(filmesString);
+    } catch (e) {
+        console.error('Erro ao converter a string em JSON:', e);
+    }
+
+    if(filmesString){
+        filmesSave = JSON.parse(filmesString);
+    }
+    
+    filmesSave.push(filme);
+    console.log(filmesSave);
+    filmesSave = JSON.stringify(filmesSave);
+    localStorage.setItem('filmesFavoritos', filmesSave);
 }
 
