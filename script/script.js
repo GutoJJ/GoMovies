@@ -6,8 +6,6 @@ let inp = document.querySelector(".inp");
 let fav = document.querySelector("#favoritos");
 let wrapper = document.querySelector(".wrapper");
 let catalogo = document.querySelector("#catal");
-let filmesSave = [];
-
 
 function desaparecer(){
     Dep.style.visibility = "hidden"; 
@@ -111,30 +109,29 @@ let detalhesFilme = async (id) => {
         
         filme.GetCardDetalhes();
         filme.getBtnFavoritos().onclick = () => {
-            salvarFilme(filme);
+            salvarFilme(filme.id);
         }
     });
     
 }
 
-
-let salvarFilme = (filme) => {
-    
+let salvarFilme = (id) => {
     let filmesString = localStorage.getItem('filmesFavoritos');
-    
+    let filmesSave = [];
+
     try {
-        filmesSave = JSON.parse(filmesString);
+        filmesSave = JSON.parse(filmesString) || [];
     } catch (e) {
         console.error('Erro ao converter a string em JSON:', e);
     }
 
-    if(filmesString){
-        filmesSave = JSON.parse(filmesString);
+    if (!filmesSave.includes(id)) {
+        filmesSave.push(id);
+        console.log(filmesSave);
+        filmesSave = JSON.stringify(filmesSave);
+        localStorage.setItem('filmesFavoritos', filmesSave);
+    } else {
+        console.log("já tem");
     }
-    
-    filmesSave.push(filme);
-    console.log(filmesSave);
-    filmesSave = JSON.stringify(filmesSave);
-    localStorage.setItem('filmesFavoritos', filmesSave);
 }
 
