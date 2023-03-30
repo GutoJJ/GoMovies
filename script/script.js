@@ -67,7 +67,9 @@ inp.addEventListener("keypress", function(event) {
       return false;
     }
 });
+
 let listaFilmes = document.querySelector("#catal");
+
 let listarFilmes = async (filmes) => {
     
     listaFilmes.innerHTML = "";
@@ -84,6 +86,7 @@ let listarFilmes = async (filmes) => {
 
 let detalhesFilme = async (id) => {
     listaFilmes.innerHTML= "";
+    console.log(id)
     fetch("https://www.omdbapi.com/?apikey=5861bcaf&i="+id)
     .then((resp) => resp.json())
     .then((resp) => {
@@ -115,15 +118,12 @@ let detalhesFilme = async (id) => {
     
 }
 
+
+
+let filmesSave;
 let salvarFilme = (id) => {
     let filmesString = localStorage.getItem('filmesFavoritos');
-    let filmesSave = [];
-
-    try {
-        filmesSave = JSON.parse(filmesString) || [];
-    } catch (e) {
-        console.error('Erro ao converter a string em JSON:', e);
-    }
+    filmesSave = JSON.parse(filmesString) || [];
 
     if (!filmesSave.includes(id)) {
         filmesSave.push(id);
@@ -135,3 +135,83 @@ let salvarFilme = (id) => {
     }
 }
 
+window.onload = () => {
+    let filmesString = localStorage.getItem('filmesFavoritos');
+    filmesSave = JSON.parse(filmesString) || [];
+    console.log("oi");
+    console.log("bom dia!!");
+    if (filmesSave.length > 0) {
+        filmesSave.forEach((id) => {
+            favFetch(id);
+        });
+    } else {
+        console.log("Nenhum filme salvo.");
+    }   
+}
+
+let favFetch = (id) => {
+
+    fetch("https://www.omdbapi.com/?apikey=5861bcaf&i="+id)
+    .then((resp) => resp.json())
+    .then((resp) => {
+        favCards(resp.Title , resp.Genre , resp.Year , resp.Poster, null, resp.imdbID)
+    })
+}
+
+let favoritosCards = document.querySelector("#favoritosCards");
+
+let favCards = (titulo , genero , ano , poster, btn, idFav) => {
+    let filmesString = localStorage.getItem('filmesFavoritos');
+    let cardFavorito = document.createElement("div");
+    cardFavorito.setAttribute("class", "cardFavorito");
+    
+    let imgFav = document.createElement("img");
+    imgFav.setAttribute("src", poster);
+
+    let favoritoText = document.createElement("div");
+    favoritoText.setAttribute("class", "favoritoText");
+
+    let tituloFavorito = document.createElement("h2");
+    tituloFavorito.setAttribute("class", "tituloFavorito");
+    tituloFavorito.appendChild(document.createTextNode(titulo));
+
+    let anoFavorito = document.createElement("p");
+    anoFavorito.setAttribute("class", "anoFavorito");
+    anoFavorito.appendChild(document.createTextNode(ano));
+
+    let generoFavorito = document.createElement("p");
+    generoFavorito.setAttribute("class", "generoFavorito");
+    generoFavorito.appendChild(document.createTextNode(genero));
+
+    let btnDetalhes = document.createElement("button");
+    btnDetalhes.setAttribute("class","btnDetalhes");
+    btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+
+    let btnDesfav = document.createElement("button");
+    btnDesfav.setAttribute("class","btnDesfav");
+    btnDesfav.appendChild(document.createTextNode("Desfavoritar"));
+
+    favoritosCards.appendChild(cardFavorito);
+    cardFavorito.appendChild(imgFav)
+    cardFavorito.appendChild(favoritoText);
+    cardFavorito.appendChild(btnDetalhes);  
+    cardFavorito.appendChild(btnDesfav);  
+    favoritoText.appendChild(tituloFavorito);
+    favoritoText.appendChild(anoFavorito);
+    favoritoText.appendChild(generoFavorito);
+
+    btnDetalhes.onclick = () => {
+        desaparecer();
+        detalhesFilme(idFav);
+    }
+
+    btnDesfav.onclick = () => {
+        filmesSave = JSON.parse(filmesString) || [];
+        filmesSave.pop(idFav);
+        console.log(filmesSave);
+        filmesSave = JSON.stringify(filmesSave);
+        localStorage.setItem('filmesFavoritos', filmesSave);
+        window.location.reload();
+    }
+
+} 

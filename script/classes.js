@@ -169,5 +169,4 @@ class Filme{
     getBtnFavoritos = () => {
         return this.btnFavoritos
     }
-    
 }

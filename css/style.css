@@ -141,6 +141,7 @@ p{
 
 #favoritos{
     display: flex;
+    flex-direction: column;
     margin-top: -25vh;
     width: 100%;
     min-height: 50vh;
@@ -151,6 +152,7 @@ p{
 #favoritos h1{
     font-size: 3.5vh;
     line-height: 100px;
+    margin: 24px auto 24px auto;
 }
 
 #catal{
@@ -204,21 +206,35 @@ p{
     
 }
 
-.btnFavoritos{
+.btnFavoritos, .btnDesfav{
     width: 100%;
     background-color: rgba(220, 220, 220, 0.8);
-    border: none;
     color: #1f1f1f;
     font-size: 25px;
     padding: 10px 20px;
     transition: 0.3s ease-in-out;
     cursor: pointer;
     border: 5px solid #9A333D;
+    
 }
 
-.btnFavoritos:hover{
+.btnDesfav{
+    padding: 0;
+    margin-top: 5px;
+}
+
+.btnFavoritos , .btnDesfav:hover{
     background-color: rgba(220, 220, 220, 1);
     box-shadow: 3px 4px 70px rgba(154, 51, 61, 0.56);
+}
+
+
+
+.btnFavoritos:active{
+    background: linear-gradient(342.4deg, rgba(21, 21, 21, 0.5) 9.58%, rgba(154, 51, 61, 0.5) 142.8%);
+    color: #fff;
+    box-shadow: 3px 4px 70px rgba(154, 51, 61, 1);
+    transition: 0s ease-in-out;
 }
 
 .detalheCard{
@@ -265,13 +281,45 @@ p{
     background-color:#9a333d60 ;
 }
 
+#favoritosCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5vw;
+    padding-bottom: 10vh;
+}
 
+.cardFavorito{
+    max-width: 300px;
+}
+
+.cardFavorito img{
+    max-width: 300px;
+    border-radius: 30px 30px 0 0;
+}
+
+.favoritoText{
+    max-width: 300px;
+    margin-top: -5px;
+    background-color: #9a333d70;
+}
+
+.favoritoText p{
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+.tituloFavorito{
+    background-color: #9A333D;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+    padding-left: 5px;
+}
 
 footer{
     width: 100%;
     height: 110px;
     background: #9a333d;
-
 }
 
 footer h1{
@@ -307,6 +355,9 @@ footer h1{
 @media(max-width:1150px){
     #catal{
         grid-template-columns: 1fr 1fr 1fr ;
+    }
+    #favoritosCards{
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -355,6 +406,9 @@ footer h1{
 
     .filme-img{
         max-width: 250px;
+    }
+    #favoritosCards{
+        grid-template-columns: 1fr;
     }
 }
 
