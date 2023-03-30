@@ -1,4 +1,4 @@
-
+//localStorage.clear();
 // variáveis
 let valorInp; // valor do input armazenado em uma variável
 let Dep = document.querySelector("#desaparecer"); // parte do site para desaparecer
@@ -206,12 +206,15 @@ let favCards = (titulo , genero , ano , poster, btn, idFav) => {
     }
 
     btnDesfav.onclick = () => {
-        filmesSave = JSON.parse(filmesString) || [];
-        filmesSave.pop(idFav);
-        console.log(filmesSave);
-        filmesSave = JSON.stringify(filmesSave);
-        localStorage.setItem('filmesFavoritos', filmesSave);
+        filmesSave = JSON.parse(localStorage.getItem('filmesFavoritos')) || [];
+        const index = filmesSave.indexOf(idFav);
+        if (index > -1) {
+            filmesSave.splice(index, 1);
+        }
+        localStorage.setItem('filmesFavoritos', JSON.stringify(filmesSave));
         window.location.reload();
     }
 
 } 
+
+
